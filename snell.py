@@ -22,7 +22,7 @@ def main():
     for key in dict.keys():
         # Take angle's sine
         if key in ("a1", "a2"):
-            dict[key] = math.sin((dict[key] * math.pi) / 180)
+            dict[key] = math.sin(math.radians(dict[key]))
     # Calculate the variable of choice, in each case
     if dict["n1"] == 0:
         n1 = (dict["n2"] * dict["a2"]) / dict["a1"]
@@ -31,12 +31,12 @@ def main():
         n2 = (dict["n1"] * dict["a1"]) / dict["a2"]
         print(f"refractive index of medium 2: {n2}")
     elif dict["a1"] == 0:
-        a1 = ((math.asin((dict["n2"] * dict["a2"]) / dict["n1"])) * 180) / math.pi
+        a1 = math.degrees(math.asin((dict["n2"] * dict["a2"]) / dict["n1"]))
         print(f"angle of incidence: {a1}°")
     elif dict["a2"] == 0:
         a2 = (dict["n1"] * dict["a1"]) / dict["n2"]
         if a2 <= 1:
-            a2 = (math.asin(a2) * 180) / math.pi
+            a2 = math.degrees(math.asin(a2))
             print(f"angle of refraction: {a2}°")
         else:
             print("total internal reflection of light")
